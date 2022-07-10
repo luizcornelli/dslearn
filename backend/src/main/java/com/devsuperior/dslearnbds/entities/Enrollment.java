@@ -1,14 +1,12 @@
 package com.devsuperior.dslearnbds.entities;
 
+import com.devsuperior.dslearnbds.entities.enums.DeliverStatus;
 import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_enrollment")
@@ -24,6 +22,12 @@ public class Enrollment implements Serializable {
     private Instant refundMoment;
     private boolean available;
     private boolean onlyUpdate;
+
+    @ManyToMany(mappedBy = "enrollmentsDone")
+    private Set<Lesson> lessonsDone = new HashSet<>();
+
+    @OneToMany(mappedBy = "enrollment")
+    private List<Deliver> deliveries = new ArrayList<>();
 
     public Enrollment(){
     }
@@ -83,6 +87,14 @@ public class Enrollment implements Serializable {
 
     public void setOnlyUpdate(boolean onlyUpdate) {
         this.onlyUpdate = onlyUpdate;
+    }
+
+    public Set<Lesson> getLessonsDone() {
+        return lessonsDone;
+    }
+
+    public List<Deliver> getDeliveries() {
+        return deliveries;
     }
 
     @Override

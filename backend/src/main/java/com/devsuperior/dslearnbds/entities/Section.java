@@ -2,6 +2,8 @@ package com.devsuperior.dslearnbds.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,6 +26,9 @@ public class Section implements Serializable {
     @ManyToOne
     @JoinColumn(name = "resource_id")
     private Resource resource;
+
+    @OneToMany(mappedBy = "section")
+    private List<Lesson> lessons = new ArrayList<>();
 
     public Section(){
     }
@@ -92,6 +97,10 @@ public class Section implements Serializable {
 
     public void setResource(Resource resource) {
         this.resource = resource;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
     }
 
     @Override

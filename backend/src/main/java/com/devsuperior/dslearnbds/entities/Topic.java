@@ -17,6 +17,7 @@ public class Topic implements Serializable {
 
     @Column(columnDefinition = "TEXT")
     private String body;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
 
     @ManyToOne
@@ -37,10 +38,17 @@ public class Topic implements Serializable {
     @JoinColumn(name = "author_id")
     private User author;
 
+    @OneToMany(mappedBy = "topic")
+    private List<Reply> replies = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "reply_id")
+    private Reply answer;
+
     public Topic(){
     }
 
-    public Topic(Long id, String title, String body, Instant moment, Lesson lesson, Offer offer, User author) {
+    public Topic(Long id, String title, String body, Instant moment, Lesson lesson, Offer offer, User author, Reply answer) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -48,6 +56,7 @@ public class Topic implements Serializable {
         this.lesson = lesson;
         this.offer = offer;
         this.author = author;
+        this.answer = answer;
     }
 
     public Long getId() {
@@ -108,6 +117,18 @@ public class Topic implements Serializable {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public Reply getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Reply answer) {
+        this.answer = answer;
     }
 
     @Override

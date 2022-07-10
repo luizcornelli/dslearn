@@ -42,3 +42,12 @@ INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, avai
     VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T13:00:00Z', null, true, false);
 INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update)
     VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T13:00:00Z', null, true, false);
+
+--Table RESOURCE
+INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id)
+    VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://cdn.pixabay.com/photo/2018/03/22/10/55/training-course-3250007_1280.jpg', 1, 1);
+INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id)
+    VALUES ('Forum', 'Tire suas dúvidas', 2, 'https://cdn.pixabay.com/photo/2018/03/22/10/55/training-course-3250007_1280.jpg', 2, 1);
+INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id)
+    VALUES ('Lives', 'Lives exclusivas para a turma', 3, 'https://cdn.pixabay.com/photo/2018/03/22/10/55/training-course-3250007_1280.jpg', 0, 1);
+
